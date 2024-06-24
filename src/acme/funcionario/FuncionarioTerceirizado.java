@@ -1,6 +1,9 @@
 package acme.funcionario;
 
-import acme.endereco.Endereco;
+import acme.contato.Endereco;
+import acme.contato.Telefone;
+import acme.enums.Cargo;
+import acme.enums.Setor;
 
 import java.math.BigDecimal;
 
@@ -9,10 +12,10 @@ public class FuncionarioTerceirizado extends Funcionario{
     private String empresaContratada;
     private int tempoPrevistoPermanencia;
 
-    public FuncionarioTerceirizado(String cargo, Endereco endereco, String nome, BigDecimal salario, String setor, Integer telefones, String empresaContratada, int tempoPrevistoPermanencia) {
+    public FuncionarioTerceirizado(Cargo cargo, Endereco endereco, String nome, BigDecimal salario, Setor setor, Telefone telefones, int tempoPrevistoPermanencia, String empresaContratada) {
         super(cargo, endereco, nome, salario, setor, telefones);
-        this.empresaContratada = empresaContratada;
         this.tempoPrevistoPermanencia = tempoPrevistoPermanencia;
+        this.empresaContratada = empresaContratada;
     }
 
     public String getEmpresaContratada() {
@@ -32,7 +35,6 @@ public class FuncionarioTerceirizado extends Funcionario{
     }
     @Override
     public BigDecimal novoSalario( Double percentual) {
-        System.out.println("O funcionário terceirizado " + getNome() + " não pode receber reajuste salarial pela ACME.");
         return this.getSalario();
     }
 }

@@ -1,4 +1,4 @@
-package acme.endereco;
+package acme.contato;
 
 public class Endereco {
     private String rua;

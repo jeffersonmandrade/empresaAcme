@@ -1,19 +1,22 @@
 package acme.funcionario;
 
-import acme.endereco.Endereco;
+import acme.contato.Telefone;
+import acme.enums.Cargo;
+import acme.contato.Endereco;
 import acme.reajuste.Reajuste;
+import acme.enums.Setor;
 
 import java.math.BigDecimal;
 
 public class Funcionario implements Reajuste {
     private String nome;
-    private Integer telefones;
+    private Telefone telefones;
     private Endereco endereco;
     private BigDecimal salario;
-    private String setor;
-    private String cargo;
+    private Setor setor;
+    private Cargo cargo;
 
-    public Funcionario(String cargo, Endereco endereco, String nome, BigDecimal salario, String setor, Integer telefones) {
+    public Funcionario(Cargo cargo, Endereco endereco, String nome, BigDecimal salario, Setor setor, Telefone telefones) {
         this.cargo = cargo;
         this.endereco = endereco;
         this.nome = nome;
@@ -22,12 +25,29 @@ public class Funcionario implements Reajuste {
         this.telefones = telefones;
     }
 
-    public String getCargo() {
+    public Telefone getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(Telefone telefones) {
+        this.telefones = telefones;
+    }
+
+
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
+    }
+
+    public Setor getSetor() {
+        return setor;
+    }
+
+    public void setSetor(Setor setor) {
+        this.setor = setor;
     }
 
     public Endereco getEndereco() {
@@ -50,31 +70,12 @@ public class Funcionario implements Reajuste {
         return salario;
     }
 
-    public void setSalario(BigDecimal salario) {
-        this.salario = salario;
-    }
-
-    public String getSetor() {
-        return setor;
-    }
-
-    public void setSetor(String setor) {
-        this.setor = setor;
-    }
-
-    public Integer getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(Integer telefones) {
-        this.telefones = telefones;
-    }
 
     @Override
     public BigDecimal novoSalario(Double porcentage) {
-        BigDecimal calculoNovoSalario = salario.add(this.salario.multiply(BigDecimal.valueOf(porcentage/100)));
-        System.out.println("O funcionário " + getNome() + "tem um novo salario de: " + calculoNovoSalario );
-        return calculoNovoSalario ;
+        BigDecimal novoSalario = salario.add(this.salario.multiply(BigDecimal.valueOf(porcentage/100)));
+        this.salario = novoSalario;
+        return getSalario() ;
     }
 }
 

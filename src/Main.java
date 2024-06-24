@@ -1,4 +1,7 @@
-import acme.endereco.Endereco;
+import acme.contato.Endereco;
+import acme.contato.Telefone;
+import acme.enums.Cargo;
+import acme.enums.Setor;
 import acme.funcionario.Funcionario;
 import acme.funcionario.FuncionarioTerceirizado;
 
@@ -11,24 +14,26 @@ public class Main {
         Endereco endereco1 = new Endereco("Rua A", "123", "São Paulo", "SP", "01234-567");
         Endereco endereco2 = new Endereco("Rua B", "456", "Rio de Janeiro", "RJ", "76543-210");
 
+        Telefone telefone1 = new Telefone(55,12,12345678);
+        Telefone telefone2 = new Telefone(53,14,987564123);
         Funcionario funcionario1 = new Funcionario(
-                "PLENO",
+                Cargo.PLENO,
                 endereco1,
                 "João Silva",
                 new BigDecimal("1000.0"),
-                "DESENVOLVIMENTO",
-                12345678
+                Setor.DESENVOLVIMENTO,
+                telefone1
         );
 
         FuncionarioTerceirizado funcionarioTerceirizado1 = new FuncionarioTerceirizado(
-                "JUNIOR",
+                Cargo.JUNIOR,
                 endereco2,
                 "Maria Oliveira",
                 new BigDecimal("4000.0"),
-                "DEVOPS",
-                99887766,
-                "XYZ Ltda",
-                12
+                Setor.DEVOPS  ,
+                telefone2,
+                12,
+                "XYZ Ltda"
         );
         BigDecimal novoSalariofuncionario = funcionario1.novoSalario(12.00);
         BigDecimal novoSalariofuncionarioTercerizado = funcionarioTerceirizado1.novoSalario(12.00);
