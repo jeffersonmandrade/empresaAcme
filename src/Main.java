@@ -6,6 +6,9 @@ import acme.funcionario.Funcionario;
 import acme.funcionario.FuncionarioTerceirizado;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -22,7 +25,7 @@ public class Main {
                 "João Silva",
                 new BigDecimal("1000.0"),
                 Setor.DESENVOLVIMENTO,
-                telefone1
+                List.of(telefone1,telefone2)
         );
 
         FuncionarioTerceirizado funcionarioTerceirizado1 = new FuncionarioTerceirizado(
@@ -30,13 +33,14 @@ public class Main {
                 endereco2,
                 "Maria Oliveira",
                 new BigDecimal("4000.0"),
-                Setor.DEVOPS  ,
-                telefone2,
-                12,
-                "XYZ Ltda"
+                Setor.DEVOPS ,
+                List.of(telefone2),
+                "XYZ Ltda",
+                12
         );
-        BigDecimal novoSalariofuncionario = funcionario1.novoSalario(12.00);
-        BigDecimal novoSalariofuncionarioTercerizado = funcionarioTerceirizado1.novoSalario(12.00);
-
+        Optional<BigDecimal> novoSalariofuncionario = funcionario1.novoSalario(12.00);
+        Optional<BigDecimal> novoSalariofuncionarioTercerizado = funcionarioTerceirizado1.novoSalario(12.00);
+        System.out.println("salario Funcionario: " + novoSalariofuncionario.orElse(funcionario1.getSalario()));
+        System.out.println("Salario Tercerizado: " + novoSalariofuncionarioTercerizado.orElse(funcionarioTerceirizado1.getSalario()));
         }
     }

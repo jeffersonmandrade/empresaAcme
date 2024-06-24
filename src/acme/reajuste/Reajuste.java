@@ -1,7 +1,8 @@
 package acme.reajuste;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public interface Reajuste {
-    BigDecimal novoSalario( Double porcentage);
+    Optional<BigDecimal> novoSalario(Double porcentage);
 }

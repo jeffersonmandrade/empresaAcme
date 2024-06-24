@@ -6,16 +6,18 @@ import acme.enums.Cargo;
 import acme.enums.Setor;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
 
 public class FuncionarioTerceirizado extends Funcionario{
 
     private String empresaContratada;
     private int tempoPrevistoPermanencia;
 
-    public FuncionarioTerceirizado(Cargo cargo, Endereco endereco, String nome, BigDecimal salario, Setor setor, Telefone telefones, int tempoPrevistoPermanencia, String empresaContratada) {
+    public FuncionarioTerceirizado(Cargo cargo, Endereco endereco, String nome, BigDecimal salario, Setor setor, List<Telefone> telefones, String empresaContratada, int tempoPrevistoPermanencia) {
         super(cargo, endereco, nome, salario, setor, telefones);
-        this.tempoPrevistoPermanencia = tempoPrevistoPermanencia;
         this.empresaContratada = empresaContratada;
+        this.tempoPrevistoPermanencia = tempoPrevistoPermanencia;
     }
 
     public String getEmpresaContratada() {
@@ -34,7 +36,7 @@ public class FuncionarioTerceirizado extends Funcionario{
         this.tempoPrevistoPermanencia = tempoPrevistoPermanencia;
     }
     @Override
-    public BigDecimal novoSalario( Double percentual) {
-        return this.getSalario();
+    public Optional<BigDecimal> novoSalario( Double percentual) {
+        return Optional.of(this.getSalario());
     }
 }

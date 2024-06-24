@@ -7,16 +7,18 @@ import acme.reajuste.Reajuste;
 import acme.enums.Setor;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
 
 public class Funcionario implements Reajuste {
     private String nome;
-    private Telefone telefones;
+    private List<Telefone> telefones;
     private Endereco endereco;
     private BigDecimal salario;
     private Setor setor;
     private Cargo cargo;
 
-    public Funcionario(Cargo cargo, Endereco endereco, String nome, BigDecimal salario, Setor setor, Telefone telefones) {
+    public Funcionario(Cargo cargo, Endereco endereco, String nome, BigDecimal salario, Setor setor, List<Telefone> telefones) {
         this.cargo = cargo;
         this.endereco = endereco;
         this.nome = nome;
@@ -25,14 +27,13 @@ public class Funcionario implements Reajuste {
         this.telefones = telefones;
     }
 
-    public Telefone getTelefones() {
+    public List<Telefone> getTelefones() {
         return telefones;
     }
 
-    public void setTelefones(Telefone telefones) {
+    public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
     }
-
 
     public Cargo getCargo() {
         return cargo;
@@ -72,10 +73,10 @@ public class Funcionario implements Reajuste {
 
 
     @Override
-    public BigDecimal novoSalario(Double porcentage) {
+    public Optional<BigDecimal> novoSalario(Double porcentage) {
         BigDecimal novoSalario = salario.add(this.salario.multiply(BigDecimal.valueOf(porcentage/100)));
         this.salario = novoSalario;
-        return getSalario() ;
+        return Optional.of(novoSalario) ;
     }
 }
 
